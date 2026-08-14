@@ -13,14 +13,21 @@ class FakeCallScreen extends StatelessWidget {
         child: ElevatedButton(
           child: const Text("Simulate Fake Call"),
           onPressed: () {
-            FlutterRingtonePlayer.play(android: AndroidSounds.ringtone, looping: true);
+            // लेटेस्ट वर्ज़न के हिसाब से फंक्शन कॉल
+            FlutterRingtonePlayer().playRingtone();
             showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
                 title: const Text("Incoming Call"),
                 content: const Text("Dad is calling..."),
                 actions: [
-                  TextButton(onPressed: () { FlutterRingtonePlayer.stop(); Navigator.pop(ctx); }, child: const Text("End Call"))
+                  TextButton(
+                    onPressed: () { 
+                      FlutterRingtonePlayer().stop(); 
+                      Navigator.pop(ctx); 
+                    }, 
+                    child: const Text("End Call")
+                  )
                 ],
               ),
             );
